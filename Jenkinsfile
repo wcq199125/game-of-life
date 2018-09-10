@@ -1,1 +1,1 @@
-pipeTrigger('simpletour-dist-web2')
+echo "test"
