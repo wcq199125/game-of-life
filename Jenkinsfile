@@ -1,1 +1,1 @@
-pipeTrigger('simpletour-dist-web')
+pipeTrigger('simpletour-dist-web2')
