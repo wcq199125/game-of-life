@@ -1,0 +1,1 @@
+pipeTrigger('simpletour-dist-web')
