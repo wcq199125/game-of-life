@@ -1,8 +1,9 @@
 pipeline {
     agent any
-    environment{
-       CC="ewe" 
-    }
+    properties([gitLabConnection('Gitlab'),
+    parameters([choice(choices: "uat\nprod", description: 'deploy to environment', name: 'DEPLOY_ENV'),
+        booleanParam(defaultValue: true, description: 'compile package and build docker image', name: 'BUILD_STEP')]),
+    ])
     stages {
         stage('Checkout') {
             steps {
