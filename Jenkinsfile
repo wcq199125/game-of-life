@@ -1,9 +1,12 @@
 pipeline {
     agent any
+    environment{
+       CC="ewe" 
+    }
     stages {
         stage('Checkout') {
             steps {
-                echo "test"
+                echo "${CC}"
            }
         }        
         stage('Build') {
