@@ -1,13 +1,12 @@
 pipeline {
     agent any
-    properties([gitLabConnection('Gitlab'),
-    parameters([choice(choices: "uat\nprod", description: 'deploy to environment', name: 'DEPLOY_ENV'),
-        booleanParam(defaultValue: true, description: 'compile package and build docker image', name: 'BUILD_STEP')]),
-    ])
+    parameters {
+         string(name:'GREETING',defaultValue:'hello',description:'test 1')
+    }
     stages {
         stage('Checkout') {
             steps {
-                echo "${CC}"
+                echo "${params.GREETING}"
            }
         }        
         stage('Build') {
