@@ -1,11 +1,9 @@
 pipeline {
     agent any
-    def username="wcq"
-    echo "${username}"
     stages {
         stage('Checkout') {
             steps {
-                echo "${username}"
+                echo "test"
            }
         }        
         stage('Build') {
