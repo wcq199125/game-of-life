@@ -1,7 +1,7 @@
 pipeline {
     agent any
     parameters {
-         string(name:'GREETING',defaultValue:'hello',description:'test 1'),
+         string(name:'GREETING',defaultValue:'hello',description:'test 1');
          booleanParam(name: 'DEBUG_BUILD', defaultValue: true, description: '') 
     }
     stages {
