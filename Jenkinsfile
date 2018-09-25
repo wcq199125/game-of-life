@@ -7,6 +7,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+                checkout scm
                 echo "${params.DEBUG_BUILD}"
                 echo "${params.GREETING}"
            }
