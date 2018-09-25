@@ -7,6 +7,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+                echo "${params.DEBUG_BUILD}"
                 echo "${params.GREETING}"
            }
         }        
