@@ -14,7 +14,7 @@ pipeline {
         }        
         stage('Build') {
             steps {
-            podTemplate(name: 'jenkins-slave-maven', label：'maven' namespace: 'kube-system', idleMinutes: 30, containers: [
+            podTemplate(name: 'jenkins-slave-maven', label：'maven' , namespace: 'kube-system', idleMinutes: 30, containers: [
             containerTemplate(name: 'maven', image: 'maven:3.5-alpine', command: 'cat', ttyEnabled: true),
             containerTemplate(name: 'docker', image: 'docker:17.03-dind', 
                 args: '--registry-mirror=https://registry.docker-cn.com -s=overlay2 --bip=172.30.1.1/24', privileged: true, ttyEnabled: true),
