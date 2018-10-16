@@ -1,19 +1,5 @@
 pipeline {
-    agent any
-    parameters {
-         string(name:'GREETING',defaultValue:'hello',description:'test 1');
-         booleanParam(name: 'DEBUG_BUILD', defaultValue: true, description: '') 
-    }
-    stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-                echo "${params.DEBUG_BUILD}"
-                echo "${params.GREETING}"
-           }
-        }        
-        stage('Build') {
-            steps {
+   
             podTemplate(name: 'jenkins-slave-maven', label: 'maven', namespace: 'kube-system', idleMinutes: 30, containers: [
             containerTemplate(name: 'maven', image: 'maven:3.5-alpine', command: 'cat', ttyEnabled: true),
             containerTemplate(name: 'docker', image: 'docker:17.03-dind', 
@@ -27,23 +13,10 @@ pipeline {
             hostPathVolume(mountPath: '/maven/repository', hostPath: '/data/nfs/maven-repo'),
             // persistentVolumeClaim(claimName: 'maven-repo', mountPath: '/maven/repository'),
         ]){
-            node(label) {
+            node(maven) {
                 stage('show release version') {
                 sh 'cat /etc/redhat-release '
             }
             }
         }
             }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying'
-            }
-        }
-    }
-}
