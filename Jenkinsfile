@@ -28,10 +28,8 @@ pipeline {
             // persistentVolumeClaim(claimName: 'maven-repo', mountPath: '/maven/repository'),
         ]){
             node(label) {
-                stages {
                 stage('show release version') {
                 sh 'cat /etc/redhat-release '
-            }
             }
             }
         }
